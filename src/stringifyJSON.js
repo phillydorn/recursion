@@ -33,12 +33,21 @@ var stringifyJSON = function(obj) {
   else { 
     switch (typeof(obj)) {
       case "number" :
-      case "boolean" : 
-        result = obj.toString();
+        result = '"' + obj + '"';
+        result = result.slice(1, result.length-1);
         break;
       case "string" :
         result = '"' + obj + '"';
         break;
+      case "boolean" : 
+        if (obj == true) {
+          result = "true";
+        }
+        else {
+          result = "false";
+        }
+        break;
+     
       case "object" :
         var stringPair;
         result = '{';
